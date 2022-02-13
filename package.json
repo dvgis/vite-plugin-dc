@@ -1,10 +1,10 @@
 {
-  "name": "vite-plugin-dc",
+  "name": "@dvgis/vite-plugin-dc",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:dvgis/vite-plugin-dc.git",
+  "main": "dist/index.js",
+  "repository": "https://github.com/dvgis/vite-plugin-dc.git",
   "author": "Caven Chen <cavencj@gmail.com>",
-  "license": "MIT",
+  "license": "Apache 2.0",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"
@@ -12,6 +12,9 @@
   "keywords": [
     "vite",
     "vite-plugin",
+    "3D",
+    "webGL",
+    "map",
     "cesium",
     "dc-sdk"
   ],
@@ -30,5 +33,8 @@
   },
   "peerDependencies": {
     "dc-sdk": "^2.8.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
