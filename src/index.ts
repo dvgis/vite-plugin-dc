@@ -26,8 +26,8 @@ function vitePluginDC(
   let outDir = "dist";
   let isBuild = false;
   let libsPath = options.libsPath || "libs";
-  let useCDNMode = options.useCDNMode || false;
-  let packages = options.packages || ["core", "mapv", "chart"];
+  let useCDNMode = options.useCDNMode ?? true;
+  let packages = options.packages || ["core", "mapv", "chart",'s3m'];
 
   return {
     name: "vite-plugin-dc",
@@ -54,6 +54,7 @@ function vitePluginDC(
               path.join(dcsdkDist, "dc.base.min.js"),
               path.join(outDir, String(libsPath), "dc-sdk", "dc.base.min.js")
             );
+
             if (Number(packages?.indexOf("core")) >= 0) {
               fs.copySync(
                 path.join(dcsdkDist, "dc.core.min.js"),
@@ -64,16 +65,25 @@ function vitePluginDC(
                 path.join(outDir, String(libsPath), "dc-sdk", "dc.core.min.css")
               );
             }
+
             if (Number(packages?.indexOf("mapv")) >= 0) {
               fs.copySync(
                 path.join(dcsdkDist, "dc.mapv.min.js"),
                 path.join(outDir, String(libsPath), "dc-sdk", "dc.mapv.min.js")
               );
             }
+
             if (Number(packages?.indexOf("chart")) >= 0) {
               fs.copySync(
                 path.join(dcsdkDist, "dc.chart.min.js"),
                 path.join(outDir, String(libsPath), "dc-sdk", "dc.chart.min.js")
+              );
+            }
+
+            if (Number(packages?.indexOf("s3m")) >= 0) {
+              fs.copySync(
+                  path.join(dcsdkDist, "dc.s3m.min.js"),
+                  path.join(outDir, String(libsPath), "dc-sdk", "dc.s3m.min.js")
               );
             }
           }
@@ -105,6 +115,7 @@ function vitePluginDC(
           },
           injectTo: "head",
         });
+
         tags.push({
           tag: "link",
           attrs: {
@@ -140,6 +151,20 @@ function vitePluginDC(
           injectTo: "head",
         });
       }
+
+
+      if (Number(packages?.indexOf("s3m")) >= 0) {
+        tags.push({
+          tag: "script",
+          attrs: {
+            src: normalizePath(
+                path.join(base, String(libsPath), "dc-sdk", "dc.s3m.min.js")
+            ),
+          },
+          injectTo: "head",
+        });
+      }
+
       return tags;
     },
   };
