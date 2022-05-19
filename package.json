@@ -1,6 +1,6 @@
 {
   "name": "@dvgis/vite-plugin-dc",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "repository": "https://github.com/dvgis/vite-plugin-dc.git",
   "author": "Caven Chen <cavencj@gmail.com>",

@@ -16,7 +16,7 @@ interface VitePluginDcOptions {
 
 function vitePluginDC(
   options: VitePluginDcOptions = {
-    packages: ["core", "mapv", "chart"],
+    packages: ["core"],
     libsPath: "libs",
     useCDNMode: true,
   }
@@ -27,7 +27,7 @@ function vitePluginDC(
   let isBuild = false;
   let libsPath = options.libsPath || "libs";
   let useCDNMode = options.useCDNMode ?? true;
-  let packages = options.packages || ["core", "mapv", "chart",'s3m'];
+  let packages = options.packages || ["core"];
 
   return {
     name: "vite-plugin-dc",
