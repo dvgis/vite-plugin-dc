@@ -18,7 +18,7 @@ function vitePluginDC(
   options: VitePluginDcOptions = {
     packages: ["core", "mapv", "chart"],
     libsPath: "libs",
-    useCDNMode: false,
+    useCDNMode: true,
   }
 ): Plugin {
   const dcsdkDist = "./node_modules/@dvgis/dc-sdk/dist";
