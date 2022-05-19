@@ -33,14 +33,15 @@ Which directory to put Cesium in
 Whether to use the unminified files in development mode
 
 - **type** : Array
-- **default**: ['core','mapv','chart']
+- **default**: ['core'] 
+- **values**: core、mapv、chart、s3m
 
 **_useCDNMode_**
 
 Whether to use the CDN method to import dc-sdk
 
 - **type** : Boolean
-- **default**: false
+- **default**: true
 
 ## Copyright
 
