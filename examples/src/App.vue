@@ -14,7 +14,7 @@
     },
     mounted() {
       this.$nextTick(()=>{
-        DC.ready(this.initViewer)
+         DC.ready().then(this.initViewer)
       })
     }
   }
