@@ -21,27 +21,20 @@ export default defineConfig({
 
 ##Options
 
-**_libsPath_**
+**_libPath_**
 
-Which directory to put Cesium in
+Which directory gets the dc-sdk lib
 
 - **type** : String
-- **default**: 'libs'
+- **default**: './node_modules/@dvgis/dc-sdk'
 
-**_packages_**
+**_outPath_**
 
-Whether to use the unminified files in development mode
+Directory to export dc-sdk lib to
 
-- **type** : Array
-- **default**: ['core'] 
-- **values**: core、mapv、chart、s3m
+- **type** : String
+- **default**: '/libs/dc-sdk'
 
-**_useCDNMode_**
-
-Whether to use the CDN method to import dc-sdk
-
-- **type** : Boolean
-- **default**: true
 
 ## Copyright
 
