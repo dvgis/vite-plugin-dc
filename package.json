@@ -25,7 +25,7 @@
     "3D",
     "webGL",
     "map",
-    "cesium",
+    "Cesium",
     "dc-sdk"
   ],
   "dependencies": {
@@ -37,8 +37,6 @@
     "@types/fs-extra": "^9.0.8",
     "@types/node": "^14.14.31",
     "@types/serve-static": "^1.13.9",
-    "lightningcss": "^1.21.5",
-    "prettier": "^2.2.1",
     "typescript": "^4.2.2",
     "unbuild": "^1.2.1",
     "vite": "^4.4.6"
