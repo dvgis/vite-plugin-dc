@@ -23,7 +23,6 @@ function vitePluginDC(
   let outDir = "dist";
   let isBuild = false;
   let outPath = options.outPath ||  "/libs/dc-sdk";
-
   return {
     name: "vite-plugin-dc",
     config(config, { command }) {
@@ -32,22 +31,22 @@ function vitePluginDC(
       outDir = config.build?.outDir || "dist";
     },
     configureServer({middlewares}) {
-      middlewares.use(outPath , serveStatic(normalizePath(dcDist)))
+      middlewares.use(normalizePath(path.join(base, outPath)) , serveStatic(normalizePath(dcDist)))
     },
     closeBundle() {
       if (isBuild) {
         try {
           fs.copySync(
               path.join(dcDist, "dc.min.js"),
-              path.join(outDir, String(outPath), "dc.min.js")
+              path.join(outDir, outPath, "dc.min.js")
           );
           fs.copySync(
               path.join(dcDist, "dc.min.css"),
-              path.join(outDir, String(outPath), "dc.min.css")
+              path.join(outDir,outPath, "dc.min.css")
           );
           fs.copySync(
               path.join(dcDist, "resources"),
-              path.join(outDir, String(outPath), "resources")
+              path.join(outDir, outPath, "resources")
           );
         } catch (e) {}
       }
@@ -58,7 +57,7 @@ function vitePluginDC(
         tag: "script",
         attrs: {
           src: normalizePath(
-              path.join(base, String(outPath), "dc.min.js")
+              path.join(base, outPath, "dc.min.js")
           ),
         },
         injectTo: "head",
@@ -68,7 +67,7 @@ function vitePluginDC(
         attrs: {
           rel: "stylesheet",
           href: normalizePath(
-              path.join(base, String(outPath), "dc.min.css")
+              path.join(base, outPath, "dc.min.css")
           ),
         },
         injectTo: "head",
