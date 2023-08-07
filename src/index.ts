@@ -18,7 +18,7 @@ function vitePluginDC(
     libPath :""
   }
 ): Plugin {
-  let  dcDist = path.join(options.libPath || "./node_modules/@dvgis/dc-sdk" ,'dist');
+  let  dcDist = options.libPath || path.join("./node_modules/@dvgis/dc-sdk" ,'dist');
   let base = "/";
   let outDir = "dist";
   let isBuild = false;
