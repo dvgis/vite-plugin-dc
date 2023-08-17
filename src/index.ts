@@ -2,51 +2,55 @@
  * @Author: Caven Chen
  */
 
-import path from "path";
-import fs from "fs-extra";
-import serveStatic from "serve-static";
-import { HtmlTagDescriptor, normalizePath, Plugin } from "vite";
+import path from 'path';
+import fs from 'fs-extra';
+import serveStatic from 'serve-static';
+import { HtmlTagDescriptor, normalizePath, Plugin } from 'vite';
 
 interface VitePluginDcOptions {
-  libPath? :string;
+  libPath?: string;
   outPath?: string;
 }
 
 function vitePluginDC(
   options: VitePluginDcOptions = {
-    outPath: "",
-    libPath :""
+    outPath: '',
+    libPath: '',
   }
 ): Plugin {
-  let  dcDist = options.libPath || path.join("./node_modules/@dvgis/dc-sdk" ,'dist');
-  let base = "/";
-  let outDir = "dist";
+  let dcDist =
+    options.libPath || path.join('./node_modules/@dvgis/dc-sdk', 'dist');
+  let base = '/';
+  let outDir = 'dist';
   let isBuild = false;
-  let outPath = options.outPath ||  "/libs/dc-sdk";
+  let outPath = options.outPath || '/libs/dc-sdk';
   return {
-    name: "vite-plugin-dc",
+    name: 'vite-plugin-dc',
     config(config, { command }) {
-      isBuild = command === "build";
-      base = config.base || "/";
-      outDir = config.build?.outDir || "dist";
+      isBuild = command === 'build';
+      base = config.base || '/';
+      outDir = config.build?.outDir || 'dist';
     },
-    configureServer({middlewares}) {
-      middlewares.use(normalizePath(path.join(base, outPath)) , serveStatic(normalizePath(dcDist)))
+    configureServer({ middlewares }) {
+      middlewares.use(
+        normalizePath(path.join(base, outPath)),
+        serveStatic(normalizePath(dcDist))
+      );
     },
     closeBundle() {
       if (isBuild) {
         try {
           fs.copySync(
-              path.join(dcDist, "dc.min.js"),
-              path.join(outDir, outPath, "dc.min.js")
+            path.join(dcDist, 'dc.min.js'),
+            path.join(outDir, outPath, 'dc.min.js')
           );
           fs.copySync(
-              path.join(dcDist, "dc.min.css"),
-              path.join(outDir,outPath, "dc.min.css")
+            path.join(dcDist, 'dc.min.css'),
+            path.join(outDir, outPath, 'dc.min.css')
           );
           fs.copySync(
-              path.join(dcDist, "resources"),
-              path.join(outDir, outPath, "resources")
+            path.join(dcDist, 'resources'),
+            path.join(outDir, outPath, 'resources')
           );
         } catch (e) {}
       }
@@ -54,23 +58,19 @@ function vitePluginDC(
     transformIndexHtml() {
       let tags: HtmlTagDescriptor[] = [];
       tags.push({
-        tag: "script",
+        tag: 'script',
         attrs: {
-          src: normalizePath(
-              path.join(base, outPath, "dc.min.js")
-          ),
+          src: normalizePath(path.join(base, outPath, 'dc.min.js')),
         },
-        injectTo: "head",
+        injectTo: 'head',
       });
       tags.push({
-        tag: "link",
+        tag: 'link',
         attrs: {
-          rel: "stylesheet",
-          href: normalizePath(
-              path.join(base, outPath, "dc.min.css")
-          ),
+          rel: 'stylesheet',
+          href: normalizePath(path.join(base, outPath, 'dc.min.css')),
         },
-        injectTo: "head",
+        injectTo: 'head',
       });
       return tags;
     },
