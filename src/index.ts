@@ -33,7 +33,7 @@ function vitePluginDC(
     },
     configureServer({ middlewares }) {
       middlewares.use(
-        normalizePath(path.join(base, outPath)),
+        normalizePath(path.join('/' , base, outPath)),
         serveStatic(normalizePath(dcDist))
       );
     },
@@ -60,7 +60,7 @@ function vitePluginDC(
       tags.push({
         tag: 'script',
         attrs: {
-          src: normalizePath(path.join(base, outPath, 'dc.min.js')),
+          src: normalizePath(path.join('/', base, outPath, 'dc.min.js')),
         },
         injectTo: 'head',
       });
@@ -68,7 +68,7 @@ function vitePluginDC(
         tag: 'link',
         attrs: {
           rel: 'stylesheet',
-          href: normalizePath(path.join(base, outPath, 'dc.min.css')),
+          href: normalizePath(path.join('/', base, outPath, 'dc.min.css')),
         },
         injectTo: 'head',
       });
