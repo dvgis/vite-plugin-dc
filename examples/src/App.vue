@@ -1,33 +1,18 @@
 <template>
   <div class="index">
-    <div class="btn-box"><button @click="operate">示例操作</button></div>
     <Viewer @on-viewer-created="viewerCreated" />
   </div>
 </template>
 
 <script setup>
-import { inject } from 'vue';
 import Viewer from './Viewer.vue';
-import { CESIUM_REF_KEY } from './cesiumVue';
-
-const cesiumRef = inject(CESIUM_REF_KEY);
-
 const viewerCreated = (viewer) => {
-
   let baseLayer = DC.ImageryLayerFactory.createAmapImageryLayer({
     style: 'img',
     crs: "WGS84"
   })
   viewer.addBaseLayer(baseLayer);
 }
-
-const operate = () => {
-  const { viewer } = cesiumRef;
-  viewer.flyToPosition(
-    new DC.Position(120.38105869, 31.10115627, 1000000, 0, -90)
-  );
-}
-
 </script>
 
 <style>
