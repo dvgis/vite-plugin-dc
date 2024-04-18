@@ -1,4 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import cesiumVue from "./cesiumVue";
 
-createApp(App).mount("#app");
+const app = createApp(App);
+app.use(cesiumVue);
+
+app.mount("#app");
