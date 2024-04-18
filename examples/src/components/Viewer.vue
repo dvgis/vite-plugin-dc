@@ -1,5 +1,5 @@
 <template>
-  <div :id="mapId" ></div>
+  <div :id="mapId"></div>
 </template>
 
 <script setup>

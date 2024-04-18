@@ -5,13 +5,12 @@
 </template>
 
 <script setup>
-import Viewer from './Viewer.vue';
+import Viewer from './components/Viewer.vue';
+import ViewerApi from "./api/ViewerApi";
 const viewerCreated = (viewer) => {
-  let baseLayer = DC.ImageryLayerFactory.createAmapImageryLayer({
-    style: 'img',
-    crs: "WGS84"
-  })
-  viewer.addBaseLayer(baseLayer);
+  let viewerApi = new ViewerApi(viewer)
+  viewerApi.addAMapImagery()
+  window.viewerApi = viewerApi
 }
 </script>
 
