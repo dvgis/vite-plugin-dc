@@ -25,16 +25,22 @@ export default defineConfig({
 
 Which directory gets the dc-sdk lib
 
-- **type** : String
+- **type** : string
 - **default**: './node_modules/@dvgis/dc-sdk'
 
 **_outPath_**
 
 Directory to export dc-sdk lib to
 
-- **type** : String
+- **type** : string
 - **default**: '/libs/dc-sdk'
 
+**_useCND_**
+
+Whether to use cdn mode, if ture,  will automatically insert references to `dc.min.js` and `dc.min.css` in index.html.
+
+- **type** : boolean
+- **default**: false
 
 ## Copyright
 
