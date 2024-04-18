@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@dvgis/dc-sdk": "^3.0.0",
+    "@dvgis/dc-sdk-types": "^1.0.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {
