@@ -33,11 +33,6 @@ function vitePluginDC(
       isBuild = command === 'build';
       base = config.base || '/';
       outDir = config.build?.outDir || 'dist';
-      if(!useCDN){
-        if(config.optimizeDeps ){
-          config.optimizeDeps.exclude = [...(config.optimizeDeps.exclude || []),"@dvgis/dc-sdk"]
-        }
-      }
     },
     configureServer({ middlewares }) {
       middlewares.use(
